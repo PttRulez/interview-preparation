@@ -1,14 +1,21 @@
-function validParentheses(parenStr) {
-  const stack = [];
-	const arr = parenStr.split('');
+function indexEqualsValue(arr) {
+	let start = 0;
+	let end = arr.length-1;
+  let res = -1;
 
-	for (const p of arr) {
-		if (stack[stack.length - 1] === '(' && p === ')') {
-			stack.pop();
-		} else [
-			stack.push(p)
-		]
+	while (start <= end) {
+		const i = Math.floor((start + end) / 2);
+
+		if (arr[i] === i) {
+			res = i;
+			end = i - 1;
+      if (arr[i-1] !== i-1 ) break;
+		} else if (arr[i] > i) {
+			end = i - 1;
+		} else {
+			start = i + 1;
+		} 
 	}
 
-	return stack.length === 0;
+	return res
 }
